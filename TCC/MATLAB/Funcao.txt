@@ -1,0 +1,20 @@
+
+function resultprocess = funcprocess('laranja3.png', 'laranja4.png',
+					 'cenoura4.png', 'cenoura5.png')
+
+im1 = imread('laranja3.png')
+im2 = imread('laranja4.png')
+im3 = imread('cenoura4.png')
+im4 = imread('cenoura5.png')
+
+im1p = im2bw(im1, 0.9);
+im2p = im2bw(im2, 0.9);
+im3p = im2bw(im3, 0.9);
+im4p = im2bw(im4, 0.9);
+
+im1v = im1p(:)
+im2v = im2p(:)
+im3v = im3p(:)
+im4v = im4p(:)
+
+M = [im1v,im2v,im3v,im4v];

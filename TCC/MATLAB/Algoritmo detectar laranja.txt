@@ -1,0 +1,45 @@
+R = 231
+G = 93
+B = 5
+
+R = 254
+G = 203
+B = 76
+
+imagem = imread(strcat(nomeImagem, '.jpg'));
+linhasImagem = size(imagem, 1);
+colunasImagem = size(imagem, 2);
+
+% Segmenta a imagem de entrada de acordo com um classificador de pixels em
+% RGB, separando os pixels que pertencem do restante dos pixels.
+
+for i=1:linhasImagem
+ 	for j=1:colunasImagem
+ 		laranja = false;
+ 		if (imagem(i,j,1) > 231 && imagem(i,j,2) > 93 && imagem(i,j,3) > 5)
+ 			if (max([imagem(i,j,1), imagem(i,j,2), imagem(i,j,3)]) -
+				min([imagem(i,j,1), imagem(i,j,2), imagem(i,j,3)])) > 15
+ 				if abs(imagem(i,j,1) -imagem(i,j,2)) > 15
+ 					if (imagem(i,j,1) > imagem(i,j,2) && imagem(i,j,1) >
+						imagem(i,j,3))
+ 						laranja = true;
+ 				
+						% Os pixels classificados como pertencentes à pele
+						% recebem o valor 255, correspondente à cor branca.
+						imagem(i,j,1) = 255;
+						imagem(i,j,2) = 255;
+						imagem(i,j,3) = 255;
+ 					end
+ 				end
+ 			end
+ 		end
+
+ 		% Os pixels que não são classificados como pertencentes à pele
+ 		% recebem o valor zero, correspondente ao preto.
+ 		if laranja == false
+ 			imagem(i,j,1) = 0;
+ 			imagem(i,j,2) = 0;
+ 			imagem(i,j,3) = 0;
+ 		end
+ 	end
+end

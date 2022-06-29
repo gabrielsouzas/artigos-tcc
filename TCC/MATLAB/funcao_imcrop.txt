@@ -1,0 +1,7 @@
+im5crop = imcrop
+
+im5p2 = im2bw(im5crop, 0.9);
+B5 = imresize (im5crop, [12 12], 'nearest');
+im5p3 = im2bw(B5, 0.9);
+im5v3 = im5p3(:)
+
